@@ -10,16 +10,22 @@ function NavBar() {
       <nav className="navbar bg-white shadow p-3">
         <div className="container">
           <Link className="navbar-brand fw-bold text-uppercase" href="/">
-            Simple Authentication
+            AuthSimplified
           </Link>
           {session?.user ? (
             <>
-              <button
-                className="btn btn-outline-danger btn-sm"
-                onClick={() => signOut()}
-              >
-                Logout
-              </button>
+              <div className="d-flex align-items-center justify-content-center gap-3">
+                <p className="text-success mb-0">In Session</p>
+                <Link className="btn btn-outline-info btn-sm" href="/admin">
+                  Admin
+                </Link>
+                <button
+                  className="btn btn-outline-danger btn-sm"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </div>
             </>
           ) : (
             <>
