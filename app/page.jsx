@@ -37,7 +37,6 @@ export default function Home() {
     fetchPerson();
   }, [session?.user]);
 
-  console.log(person);
 
   return (
     <>
