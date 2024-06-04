@@ -34,6 +34,10 @@ export const authOptions = {
 
     session: {
         strategy: "jwt",
+    },
+
+    pages:{
+        signIn: "/auth/login"
     }
 }
 

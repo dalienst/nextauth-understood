@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 
 function Login() {
@@ -9,13 +10,17 @@ function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
     // Perform form validation and submission here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const result = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: true,
+      callbackUrl: "/",
+    });
   };
 
   return (
     <div className="container py-5 d-flex flex-column justify-content-center align-items-center">
-      <form className="shadow bg-white rounded p-3" onSubmit={onSubmit}>
+      <form className="shadow bg-white rounded p-3">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
@@ -40,7 +45,11 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-outline-primary btn-sm">
+        <button
+          onClick={onSubmit}
+          type="submit"
+          className="btn btn-outline-primary btn-sm"
+        >
           Submit
         </button>
       </form>
