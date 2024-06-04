@@ -3,23 +3,18 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./NavBar";
-import { SessionProvider } from "next-auth/react";
+import Provider from "./Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata = {
-//   title: "NextJS and Next-Auth Authentication",
-//   description: "Explained simple next-auth authentication",
-// };
-
-export default function RootLayout({ children, session }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SessionProvider session={session}>
+        <Provider>
           <NavBar />
           {children}
-        </SessionProvider>
+        </Provider>
       </body>
     </html>
   );

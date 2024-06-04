@@ -18,12 +18,12 @@ export const authOptions = {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({email, password,})
+                body: JSON?.stringify({email, password,})
             })
     
-            const user = await response.json()
+            const user = await response?.json()
     
-            if (response.ok && user) {
+            if (response?.ok && user) {
                 return user
             } else {
                 return null
