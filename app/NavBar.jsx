@@ -1,26 +1,46 @@
-import React from 'react'
+import React from "react";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function NavBar() {
+  const { data: session } = useSession();
+
   return (
     <>
       <nav className="navbar bg-white shadow p-3">
         <div className="container">
           <Link className="navbar-brand fw-bold text-uppercase" href="/">
-            Simple Authentication
+            AuthSimplified
           </Link>
-          <div className="d-flex align-items-center gap-3">
-            <Link className="btn btn-outline-primary" href="/auth/login">
-              Login
-            </Link>
-            <Link className="btn btn-primary" href="/auth/register">
-              Register
-            </Link>
-          </div>
+          {session?.user ? (
+            <>
+              <div className="d-flex align-items-center justify-content-center gap-3">
+                <p className="text-success mb-0">In Session</p>
+                <Link className="btn btn-outline-info btn-sm" href="/admin">
+                  Admin
+                </Link>
+                <button
+                  className="btn btn-outline-danger btn-sm"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <button
+                className="btn btn-outline-primary btn-sm"
+                onClick={() => signIn()}
+              >
+                Login
+              </button>
+            </>
+          )}
         </div>
       </nav>
     </>
   );
 }
 
-export default NavBar
+export default NavBar;
